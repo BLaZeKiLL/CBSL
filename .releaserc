@@ -1,0 +1,20 @@
+{
+  "tagFormat": "v${version}",
+  "plugins": [
+    ["@semantic-release/commit-analyzer", { 
+      "preset": "angular",
+      "releaseRules": [
+        {"type": "refactor", "release": "patch"},
+        {"type": "release", "release": "major"}
+      ]
+    }],
+    "@semantic-release/release-notes-generator",
+    ["@semantic-release/changelog", { "preset": "angular" }],
+    ["@semantic-release/npm", { "npmPublish": false, "pkgRoot": "./Assets/Source" }],
+    ["@semantic-release/git", {
+      "assets": ["./Assets/Source/package.json", "CHANGELOG.md"],
+      "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+    }],
+    "@semantic-release/github"
+  ]
+}

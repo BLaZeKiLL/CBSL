@@ -1,0 +1,36 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  Release:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          lfs: true
+      - name: Versioning
+        id: semantic
+        uses: cycjimmy/semantic-release-action@v2
+        with:
+          extra_plugins: |
+            @semantic-release/changelog
+            @semantic-release/git
+          branch: main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release
+        run: |
+          git branch -d release &> /dev/null || echo release branch not found
+          git subtree split -P Assets/Source -b release
+          git push origin --all
+      - name: Tagging
+        run: |
+          echo VERSION ${{ steps.semantic.outputs.new_release_version }}
+          git tag upm/v${{ steps.semantic.outputs.new_release_version }} release
+          git push origin --tags
