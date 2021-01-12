@@ -24,11 +24,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Release
+        if: steps.semantic.outputs.new_release_published == 'true'
         run: |
           git branch -d release &> /dev/null || echo release branch not found
           git subtree split -P Assets/Source -b release
           git push origin --all
       - name: Tagging
+        if: steps.semantic.outputs.new_release_published == 'true'
         run: |
           echo VERSION ${{ steps.semantic.outputs.new_release_version }}
           git tag upm/v${{ steps.semantic.outputs.new_release_version }} release
