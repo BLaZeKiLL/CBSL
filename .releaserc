@@ -1,5 +1,4 @@
 {
-  "tagFormat": "v${version}",
   "plugins": [
     [
       "@semantic-release/commit-analyzer",
