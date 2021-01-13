@@ -2,7 +2,13 @@
 
 namespace CBSL.Core.Test.Runtime.Provider {
 
-    public class TestComponent {
+    public interface ITestComponent {
+
+        int Power();
+
+    }
+
+    public class TestComponent : ITestComponent {
 
         private int _health;
 
@@ -22,7 +28,7 @@ namespace CBSL.Core.Test.Runtime.Provider {
     
     public class TestProvider : Provider<TestProvider, TestSettings> {
 
-        public virtual TestComponent CreateComponent() => new TestComponent(Settings.Health);
+        public virtual ITestComponent CreateComponent() => new TestComponent(Settings.Health);
 
     }
 
