@@ -1,6 +1,6 @@
 {
   "name": "io.codeblaze.cbsl",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "displayName": "CBSL",
   "description": "CodeBlaze Standard Library",
   "unity": "2020.2",
