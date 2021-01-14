@@ -11,7 +11,7 @@ env:
 
 jobs:
   Test:
-    name: Test in ${{ matrix.testMode }} on version ${{ matrix.unityVersion }}
+    name: Test on version ${{ matrix.unityVersion }}
     runs-on: ubuntu-18.04
     strategy:
       fail-fast: false
@@ -34,7 +34,6 @@ jobs:
         id: tests
         with:
           unityVersion: ${{ matrix.unityVersion }}
-          customParameters: --unityLogName="/dev/stdout"
       - uses: actions/upload-artifact@v1
         with:
           name: Test results for ${{ matrix.testMode }}
