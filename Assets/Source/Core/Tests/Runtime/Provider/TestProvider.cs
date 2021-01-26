@@ -26,8 +26,10 @@ namespace CBSL.Core.Test.Runtime.Provider {
 
     }
     
-    public class TestProvider : Provider<TestProvider, TestSettings> {
+    public class TestProvider : Provider<TestProvider> {
 
+        public TestSettings Settings { get; set; }
+        
         public virtual ITestComponent CreateComponent() => new TestComponent(Settings.Health);
 
     }
