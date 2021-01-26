@@ -1,0 +1,26 @@
+{
+  "name": "io.codeblaze.cbsl",
+  "version": "1.1.0",
+  "displayName": "CBSL",
+  "description": "CodeBlaze Standard Library",
+  "unity": "2020.2",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BLaZeKiLL/CBSL.git"
+  },
+  "keywords": [
+    "Utility",
+    "Framework",
+    "Library"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BLaZeKiLL/CBSL/issues"
+  },
+  "homepage": "https://github.com/BLaZeKiLL/CBSL#readme",
+  "author": {
+    "name": "CodeBlaze",
+    "email": "blazeingamer10@gmail.com",
+    "url": "https://www.youtube.com/channel/UC_qfPIYfXOvg0SDAc8Z68WA"
+  }
+}
