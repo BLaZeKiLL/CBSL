@@ -13,7 +13,9 @@ namespace CBSL.Core.Test.Runtime.Provider {
         [SetUp]
         public void Setup() {
             _settings = new TestSettings {Health = 100};
-            TestProvider.Initialize(() => new TestProvider(), _settings);
+            TestProvider.Initialize(provider => {
+                provider.Settings = _settings;
+            });
         }
         
         [Test]
