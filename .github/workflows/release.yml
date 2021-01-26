@@ -27,7 +27,7 @@ jobs:
         if: steps.semantic.outputs.new_release_published == 'true'
         run: |
           git branch -d release &> /dev/null || echo release branch not found
-          git subtree split -P Assets/Source -b release
+          git subtree split -P Packages/CBSL -b release
           git push origin --all
       - name: Tagging
         if: steps.semantic.outputs.new_release_published == 'true'
