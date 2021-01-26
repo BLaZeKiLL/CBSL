@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/BLaZeKiLL/CBSL/compare/v1.1.0...v1.1.1) (2021-01-26)
+
+
+### Bug Fixes
+
+* Merge pull request [#8](https://github.com/BLaZeKiLL/CBSL/issues/8) from BLaZeKiLL/fix/provider ([9bd389b](https://github.com/BLaZeKiLL/CBSL/commit/9bd389bf08b20c05f45f9b731a0688d86cf0e998))
+
 # [1.1.0](https://github.com/BLaZeKiLL/CBSL/compare/v1.0.0...v1.1.0) (2021-01-26)
 
 
