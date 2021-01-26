@@ -4,3 +4,9 @@
 ![CI](https://github.com/BLaZeKiLL/CBSL/workflows/CI/badge.svg)
 
 Runtime components too author game logic
+
+Features
+- Collections
+  - Object Pools
+  - Random Bag
+- Provider
