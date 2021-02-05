@@ -7,10 +7,10 @@ using NUnit.Framework;
 
 namespace CBSL.Core.Test.Runtime.Collections.Random {
 
-    public class RandomBag {
+    public class RandomBagTest {
 
         [Test]
-        public void RandomBag_Should_Return_Random_Items_From_Bag() {
+        public void ShouldReturnRandomItemsFromBag() {
             var elements = new List<string> {"a", "b", "c", "d"};
             var bag = new RandomBag<string>(elements);
 
