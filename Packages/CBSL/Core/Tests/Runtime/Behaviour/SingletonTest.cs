@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CBSL.Core.Test.Runtime.Behaviour {
 
-    public class Singleton {
+    public class SingletonTest {
 
         private GameObject _go;
         
@@ -19,7 +19,7 @@ namespace CBSL.Core.Test.Runtime.Behaviour {
         }
 
         [Test]
-        public void Singleton_TestSingletonBehaviour_Should_Not_Be_Null() {
+        public void TestSingletonBehaviourShouldNotBeNull() {
             Assert.That(TestSingletonBehaviour.Current, Is.Not.Null);
         }
 

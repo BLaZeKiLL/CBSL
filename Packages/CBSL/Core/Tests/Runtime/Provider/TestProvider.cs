@@ -1,4 +1,4 @@
-﻿using CBSL.Core.Source.Core.Runtime.Provider;
+﻿using CBSL.Core.Provider;
 
 namespace CBSL.Core.Test.Runtime.Provider {
 

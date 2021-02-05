@@ -4,10 +4,10 @@ using NUnit.Framework;
 
 namespace CBSL.Core.Test.Runtime.Collections.Pools {
 
-    public class ObjectPool {
+    public class ObjectPoolTest {
 
         [Test]
-        public void ObjectPool_Claim_Should_Return_Objects_In_FiFo_Order_And_Invoke_Callbacks() {
+        public void ShouldReturnObjectsInFiFoOrderAndInvokeCallbacks() {
             int claimCount = 0, reclaimCount = 0;
             var pool = new ObjectPool<string>(
                 5, 

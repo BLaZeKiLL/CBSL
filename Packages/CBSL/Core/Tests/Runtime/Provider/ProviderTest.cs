@@ -6,7 +6,7 @@ using UnityEngine.TestTools;
 
 namespace CBSL.Core.Test.Runtime.Provider {
 
-    public class Provider {
+    public class ProviderTest {
 
         private TestSettings _settings;
         
@@ -19,12 +19,12 @@ namespace CBSL.Core.Test.Runtime.Provider {
         }
         
         [Test]
-        public void Provider_Should_Return_Current_Settings() {
+        public void ShouldReturnCurrentSettings() {
             Assert.That(TestProvider.Current.Settings, Is.EqualTo(_settings));
         }
 
         [Test]
-        public void Provider_TestComponent_Should_Compute_Power() {
+        public void TestComponentShouldComputePower() {
             var component = TestProvider.Current.CreateComponent();
             Assert.That(component, Is.TypeOf<TestComponent>());
             Assert.That(component.Power(), Is.EqualTo(_settings.Health * 2));

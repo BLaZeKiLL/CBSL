@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CBSL.Core.Source.Core.Runtime.Provider {
+namespace CBSL.Core.Provider {
 
     public abstract class Provider<P> where P : Provider<P>, new() {
 
