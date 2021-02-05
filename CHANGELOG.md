@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/BLaZeKiLL/CBSL/compare/v1.1.2...v1.2.0) (2021-02-05)
+
+
+### Features
+
+* Merge pull request [#10](https://github.com/BLaZeKiLL/CBSL/issues/10) from BLaZeKiLL/feat/compressed-array ([f7fc9a8](https://github.com/BLaZeKiLL/CBSL/commit/f7fc9a8a2ca85c181fa40476731c673987dea719))
+
 ## [1.1.2](https://github.com/BLaZeKiLL/CBSL/compare/v1.1.1...v1.1.2) (2021-01-26)
 
 
