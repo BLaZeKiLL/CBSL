@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 using NUnit.Framework;
 
+using UnityEngine;
+
 namespace CBSL.Core.Test.Runtime.Collections.Compressed {
 
     public class CompressedArrayTest {
@@ -47,7 +49,7 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
 
             for (int i = 0; i < 32; i++) {
                 for (int j = 0; j < 128; j++) {
-                    expected[j] = i;
+                    expected[i * 128 + j] = i;
                 }
             }
 
@@ -58,6 +60,29 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
             array.DeCompress();
 
             var actual = array.GetDeCompressedData();
+
+            Assert.That(actual, Is.EquivalentTo(expected));
+        }
+
+        [Test]
+        public void RandomDataAccess() {
+            var expected = new int[4096];
+
+            for (int i = 0; i < 32; i++) {
+                for (int j = 0; j < 128; j++) {
+                    expected[i * 128 + j] = i;
+                }
+            }
+            
+            var array = new TestCompressedArray(expected, sizeof(int));
+            
+            array.Compress();
+
+            var actual = new int[4096];
+
+            for (int i = 0; i < 4096; i++) {
+                actual[i] = array.GetAt(i);
+            }
 
             Assert.That(actual, Is.EquivalentTo(expected));
         }
