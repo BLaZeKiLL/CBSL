@@ -80,6 +80,10 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
 
             var actual = new int[4096];
 
+            for (int i = 0; i < 4096; i++) {
+                actual[i] = array.GetAt(i);
+            }
+
             Assert.That(actual, Is.EquivalentTo(expected));
         }
 
