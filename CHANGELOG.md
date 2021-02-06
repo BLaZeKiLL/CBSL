@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/BLaZeKiLL/CBSL/compare/v1.2.0...v1.2.1) (2021-02-06)
+
+
+### Bug Fixes
+
+* Merge pull request [#11](https://github.com/BLaZeKiLL/CBSL/issues/11) from BLaZeKiLL/fix/compressed-array-access ([f18286d](https://github.com/BLaZeKiLL/CBSL/commit/f18286d931c73dcf0631c545862f192ca687bba7))
+
 # [1.2.0](https://github.com/BLaZeKiLL/CBSL/compare/v1.1.2...v1.2.0) (2021-02-05)
 
 
