@@ -17,14 +17,13 @@ module.exports = {
       },
       items: [
         {
-          to: 'docs/',
-          activeBasePath: 'docs',
+          to: '/',
           label: 'Docs',
           position: 'left',
         },
         { 
-          to: 'blog', 
-          label: 'Blog', 
+          to: '/changelog', 
+          label: 'Changelog', 
           position: 'left'
         },
         {
@@ -41,13 +40,9 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Style Guide',
+              label: 'Getting Started',
               to: 'docs/',
-            },
-            {
-              label: 'Second Doc',
-              to: 'docs/doc2/',
-            },
+            }
           ],
         },
         {
@@ -71,17 +66,13 @@ module.exports = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: 'blog',
-            },
-            {
               label: 'GitHub',
               href: 'https://github.com/facebook/docusaurus',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} CBSL, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} CodeBlaze, Inc. Built with Docusaurus.`,
     },
   },
   presets: [
@@ -90,15 +81,8 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+          editUrl: 'https://github.com/BLaZeKiLL/CBSL/edit/master/cbsl',
+          routeBasePath: '/'
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

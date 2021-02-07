@@ -14,6 +14,8 @@
 .env.development.local
 .env.test.local
 .env.production.local
+src/pages/changelog.md
+docs/getting_started/example.md
 
 npm-debug.log*
 yarn-debug.log*
