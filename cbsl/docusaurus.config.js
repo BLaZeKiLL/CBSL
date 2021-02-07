@@ -1,13 +1,13 @@
 module.exports = {
   title: 'CBSL',
   tagline: 'Runtime components too author game logic',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
+  url: 'https://BLaZeKiLL.github.io',
+  baseUrl: '/cbsl/',
+  organizationName: 'codeblaze',
+  projectName: 'cbsl',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'codeblaze', // Usually your GitHub org/user name.
-  projectName: 'cbsl', // Usually your repo name.
   themeConfig: {
     navbar: {
       title: 'CBSL',
