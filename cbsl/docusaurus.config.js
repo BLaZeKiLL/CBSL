@@ -1,16 +1,16 @@
 module.exports = {
-  title: 'My Site',
-  tagline: 'The tagline of my site',
+  title: 'CBSL',
+  tagline: 'Runtime components too author game logic',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'codeblaze', // Usually your GitHub org/user name.
+  projectName: 'cbsl', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'My Site',
+      title: 'CBSL',
       logo: {
         alt: 'My Site Logo',
         src: 'img/logo.svg',
@@ -22,9 +22,13 @@ module.exports = {
           label: 'Docs',
           position: 'left',
         },
-        {to: 'blog', label: 'Blog', position: 'left'},
+        { 
+          to: 'blog', 
+          label: 'Blog', 
+          position: 'left'
+        },
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/BLaZeKiLL/CBSL',
           label: 'GitHub',
           position: 'right',
         },
@@ -77,7 +81,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} CBSL, Inc. Built with Docusaurus.`,
     },
   },
   presets: [
