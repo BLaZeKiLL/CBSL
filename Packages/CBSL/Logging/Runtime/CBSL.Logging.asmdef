@@ -1,0 +1,16 @@
+{
+    "name": "CBSL.Logging",
+    "rootNamespace": "CBSL.Logging",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "CBSL_LOGGING"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

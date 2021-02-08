@@ -9,6 +9,10 @@ module.exports = {
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   themeConfig: {
+    prism: {
+      theme: require('prism-react-renderer/themes/nightOwl'),
+      additionalLanguages: ['csharp']
+    },
     navbar: {
       title: 'CBSL',
       logo: {
