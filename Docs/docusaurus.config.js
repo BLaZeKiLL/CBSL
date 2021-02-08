@@ -49,17 +49,9 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
-            },
+              label: 'Youtube',
+              href: 'https://www.youtube.com/channel/UC_qfPIYfXOvg0SDAc8Z68WA',
+            }
           ],
         },
         {
@@ -67,7 +59,7 @@ module.exports = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/BLaZeKiLL/CBSL',
             },
           ],
         },
@@ -81,7 +73,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/BLaZeKiLL/CBSL/edit/master/cbsl',
+          editUrl: 'https://github.com/BLaZeKiLL/CBSL/edit/master/Docs',
           routeBasePath: '/'
         },
         theme: {
