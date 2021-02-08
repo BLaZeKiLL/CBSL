@@ -67,7 +67,7 @@ jobs:
       - name: Enviornment Setup
         run: yarn install --frozen-lockfile --prefer-offline
       - name: Build
-        run: yarn Build
+        run: yarn build
       - name: Release
         uses: peaceiris/actions-gh-pages@v3
         with:
