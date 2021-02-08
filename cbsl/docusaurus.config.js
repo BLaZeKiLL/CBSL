@@ -2,7 +2,7 @@ module.exports = {
   title: 'CBSL',
   tagline: 'Runtime components too author game logic',
   url: 'https://BLaZeKiLL.github.io',
-  baseUrl: '/cbsl/',
+  baseUrl: '/CBSL/',
   organizationName: 'codeblaze',
   projectName: 'cbsl',
   onBrokenLinks: 'throw',
