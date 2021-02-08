@@ -3,8 +3,6 @@ using System.Collections.Generic;
 
 using NUnit.Framework;
 
-using UnityEngine;
-
 namespace CBSL.Core.Test.Runtime.Collections.Compressed {
 
     public class CompressedArrayTest {
