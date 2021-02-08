@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/BLaZeKiLL/CBSL/compare/v1.3.2...v1.3.3) (2021-02-08)
+
+
+### Bug Fixes
+
+* Merge pull request [#21](https://github.com/BLaZeKiLL/CBSL/issues/21) from BLaZeKiLL/fix/remove-dark-hue ([1a9d7ac](https://github.com/BLaZeKiLL/CBSL/commit/1a9d7ace058e2defa3f395cd13e899f00bed5be8))
+
 ## [1.3.2](https://github.com/BLaZeKiLL/CBSL/compare/v1.3.1...v1.3.2) (2021-02-08)
 
 
