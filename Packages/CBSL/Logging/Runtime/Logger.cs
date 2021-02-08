@@ -7,7 +7,7 @@ namespace CBSL.Logging {
     public static class Logger {
 
         public static string GetTag<T>() {
-            var name = typeof(T).Name;
+            var name = typeof(T).Name.Split('`')[0];
             var hue = (float) name.GetHashCode() % 10000 / 10000;
             var color = Color.HSVToRGB((hue + 1) / 2, 1f, 1f);
             return $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{name}</color>";
