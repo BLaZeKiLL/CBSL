@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/BLaZeKiLL/CBSL/compare/v1.2.1...v1.3.0) (2021-02-08)
+
+
+### Features
+
+* Merge pull request [#18](https://github.com/BLaZeKiLL/CBSL/issues/18) from BLaZeKiLL/feat/logger ([a9594ac](https://github.com/BLaZeKiLL/CBSL/commit/a9594ac2eb68f38cf8c1eb85056a85d3ed5b39bb))
+
 ## [1.2.1](https://github.com/BLaZeKiLL/CBSL/compare/v1.2.0...v1.2.1) (2021-02-06)
 
 
