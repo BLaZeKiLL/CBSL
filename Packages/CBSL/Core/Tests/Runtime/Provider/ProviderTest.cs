@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using CBSL.Core.Provider;
+
+using NUnit.Framework;
 
 namespace CBSL.Core.Test.Runtime.Provider {
 
@@ -9,19 +11,19 @@ namespace CBSL.Core.Test.Runtime.Provider {
         [SetUp]
         public void Setup() {
             _settings = new TestSettings {Health = 100};
-            TestProvider.Initialize(provider => {
+            Provider<TestProvider>.Initialize(provider => {
                 provider.Settings = _settings;
             });
         }
         
         [Test]
         public void ShouldReturnCurrentSettings() {
-            Assert.That(TestProvider.Current.Settings, Is.EqualTo(_settings));
+            Assert.That(Provider<TestProvider>.Current.Settings, Is.EqualTo(_settings));
         }
 
         [Test]
         public void TestComponentShouldComputePower() {
-            var component = TestProvider.Current.CreateComponent();
+            var component = Provider<TestProvider>.Current.CreateComponent();
             Assert.That(component, Is.TypeOf<TestComponent>());
             Assert.That(component.Power(), Is.EqualTo(_settings.Health * 2));
         }
