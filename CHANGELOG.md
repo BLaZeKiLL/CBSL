@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/BLaZeKiLL/CBSL/compare/v1.3.3...v1.3.4) (2021-02-10)
+
+
+### Bug Fixes
+
+* Merge pull request [#23](https://github.com/BLaZeKiLL/CBSL/issues/23) from BLaZeKiLL/docs/collections-cocmpressed-array ([4ae7d86](https://github.com/BLaZeKiLL/CBSL/commit/4ae7d8663e17618f33645d2511825806c76b1f63))
+
 ## [1.3.3](https://github.com/BLaZeKiLL/CBSL/compare/v1.3.2...v1.3.3) (2021-02-08)
 
 
