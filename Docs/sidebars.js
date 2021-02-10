@@ -10,7 +10,7 @@ module.exports = {
         'modules/core/introduction',
         {
           Collections: [
-            
+            'modules/core/collections/compressed_array'
           ]
         },
         'modules/core/provider',
