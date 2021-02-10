@@ -5,31 +5,34 @@ using UnityEngine;
 
 namespace CBSL.Core.Collections.Compressed {
 
-    public abstract class CompressedArray<T> {
+    public class CompressedArray<T> {
         
         public DataState State { get; private set; }
         public int Length { get; private set; }
         public int DataSize { get; }
+
+        private Func<byte[], T> _fromBytes;
+        private Func<T, byte[]> _getBytes;
         
         private object _data;
 
-        public CompressedArray(T[] data, int dataSize) {
+        public CompressedArray(T[] data, int dataSize, Func<byte[], T> fromBytes, Func<T, byte[]> getBytes) {
             _data = data;
             Length = data.Length;
             DataSize = dataSize;
+            _fromBytes = fromBytes;
+            _getBytes = getBytes;
             State = DataState.DECOMPRESSED;
         }
 
-        public CompressedArray(List<byte> bytes, int length, int dataSize) {
+        public CompressedArray(List<byte> bytes, int length, int dataSize, Func<byte[], T> fromBytes, Func<T, byte[]> getBytes) {
             _data = bytes;
             Length = length;
             DataSize = dataSize;
+            _fromBytes = fromBytes;
+            _getBytes = getBytes;
             State = DataState.COMPRESSED;
         }
-
-        protected abstract T FromBytes(byte[] bytes);
-
-        protected abstract byte[] GetBytes(T obj);
 
         public T GetAt(int index) {
             return State switch {
@@ -69,7 +72,7 @@ namespace CBSL.Core.Collections.Compressed {
             var cdata = data[0];
             var index = 0;
             
-            bytes.AddRange(GetBytes(cdata));
+            bytes.AddRange(_getBytes(cdata));
 
             for (int i = 1; i < data.Length; i++) {
                 index++;
@@ -78,7 +81,7 @@ namespace CBSL.Core.Collections.Compressed {
                 
                 bytes.AddRange(BitConverter.GetBytes(index));
                 cdata = data[i];
-                bytes.AddRange(GetBytes(cdata));
+                bytes.AddRange(_getBytes(cdata));
             }
 
             bytes.AddRange(BitConverter.GetBytes(++index));
@@ -94,7 +97,7 @@ namespace CBSL.Core.Collections.Compressed {
             var bindex = 0;
 
             for (int i = 0; i < bytes.Count; i += step) {
-                var obj = FromBytes(bytes.GetRange(i, DataSize).ToArray());
+                var obj = _fromBytes(bytes.GetRange(i, DataSize).ToArray());
                 var count = BitConverter.ToInt32(bytes.GetRange(i + DataSize, sizeof(int)).ToArray(), 0);
 
                 for (int j = bindex; j < count; j++) {
@@ -117,13 +120,13 @@ namespace CBSL.Core.Collections.Compressed {
                 var mid = (max + min) / 2;
                 var val = BitConverter.ToInt32(data.GetRange(mid * (DataSize + sizeof(int)) + DataSize, sizeof(int)).ToArray(), 0);
 
-                if (index == val) return FromBytes(data.GetRange((mid + 1) * (DataSize + sizeof(int)), DataSize).ToArray());
+                if (index == val) return _fromBytes(data.GetRange((mid + 1) * (DataSize + sizeof(int)), DataSize).ToArray());
 
                 if (index < val) max = mid - 1;
                 else min = mid + 1;
             }
             
-            return FromBytes(data.GetRange(min * (DataSize + sizeof(int)), DataSize).ToArray());
+            return _fromBytes(data.GetRange(min * (DataSize + sizeof(int)), DataSize).ToArray());
         }
 
         public enum DataState {
