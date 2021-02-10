@@ -10,7 +10,7 @@ module.exports = {
   favicon: 'img/favicon.ico',
   themeConfig: {
     prism: {
-      theme: require('prism-react-renderer/themes/nightOwl'),
+      theme: require('./code_theme'),
       additionalLanguages: ['csharp']
     },
     navbar: {

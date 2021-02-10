@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using CBSL.Core.Collections.Compressed;
+
 using NUnit.Framework;
 
 namespace CBSL.Core.Test.Runtime.Collections.Compressed {
@@ -11,7 +13,7 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
         public void ShouldCompressData() {
             var data = new int[4096];
 
-            var array = new TestCompressedArray(data, sizeof(int));
+            var array = new CompressedArray<int>(data, sizeof(int), _fromBytes, BitConverter.GetBytes);
             
             array.Compress();
 
@@ -30,7 +32,7 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
             bytes.AddRange(BitConverter.GetBytes(0));
             bytes.AddRange(BitConverter.GetBytes(4096));
 
-            var array = new TestCompressedArray(bytes, 4096, sizeof(int));
+            var array = new CompressedArray<int>(bytes, 4096, sizeof(int), _fromBytes, BitConverter.GetBytes);
             
             array.DeCompress();
 
@@ -51,7 +53,7 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
                 }
             }
 
-            var array = new TestCompressedArray(expected, sizeof(int));
+            var array = new CompressedArray<int>(expected, sizeof(int), _fromBytes, BitConverter.GetBytes);
             
             array.Compress();
             
@@ -72,7 +74,7 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
                 }
             }
             
-            var array = new TestCompressedArray(expected, sizeof(int));
+            var array = new CompressedArray<int>(expected, sizeof(int), _fromBytes, BitConverter.GetBytes);
             
             array.Compress();
 
@@ -84,6 +86,8 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
 
             Assert.That(actual, Is.EquivalentTo(expected));
         }
+
+        private Func<byte[], int> _fromBytes = bytes => BitConverter.ToInt32(bytes, 0);
 
     }
 
