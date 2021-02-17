@@ -3,6 +3,7 @@
 CBSL provides modules that help you author game logic.
 
 [![openupm](https://img.shields.io/npm/v/io.codeblaze.cbsl?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/io.codeblaze.cbsl/)
+[![Docs](https://img.shields.io/github/workflow/status/BLaZeKiLL/CBSL/Release?label=Docs)](https://blazekill.github.io/CBSL/)
 ![CI](https://github.com/BLaZeKiLL/CBSL/workflows/CI/badge.svg)
 ![Release](https://github.com/BLaZeKiLL/CBSL/workflows/Release/badge.svg)
 ![GitHub](https://img.shields.io/github/license/BLaZeKiLL/CBSL)
