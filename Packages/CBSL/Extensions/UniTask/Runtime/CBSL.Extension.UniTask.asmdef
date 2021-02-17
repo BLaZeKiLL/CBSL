@@ -1,0 +1,18 @@
+{
+    "name": "CBSL.Extension.UniTask",
+    "rootNamespace": "CBSL.Extension.UniTask",
+    "references": [
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "CBSL_EXT_UNITASK"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
