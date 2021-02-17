@@ -21,5 +21,11 @@ module.exports = {
         'modules/logging/logger',
       ]
     }],
+    Extensions: [{
+      UniTask: [
+        'extensions/unitask/introduction',
+        'extensions/unitask/batching'
+      ]
+    }]
   },
 };

@@ -38,7 +38,7 @@ which can be done manually just add the following to you manifest.json.
 {
   "dependencies": {
     // ...
-    "io.codeblaze.cbsl": "1.2.1",
+    "io.codeblaze.cbsl": "<CBSL VERSION>",
     // ...
   },
     "scopedRegistries": [
@@ -52,6 +52,10 @@ which can be done manually just add the following to you manifest.json.
   ]
 }
 ```
+
+:::info
+latest version of CBSL is : [![openupm](https://img.shields.io/npm/v/io.codeblaze.cbsl?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/io.codeblaze.cbsl/)
+:::
 
 ---
 

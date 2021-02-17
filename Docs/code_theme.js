@@ -39,9 +39,14 @@ module.exports = {
       color: "rgb(248, 248, 242)"
     }
   }, {
-    types: ["string", "char", "tag", "selector"],
+    types: ["tag", "selector"],
     style: {
       color: "rgb(255, 121, 198)"
+    }
+  }, {
+    types: ["string", "char"],
+    style: {
+      color: "#C3E88D"
     }
   }, {
     types: ["keyword"],
