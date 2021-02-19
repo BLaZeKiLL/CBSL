@@ -30,13 +30,13 @@ public static async UniTaskVoid Process<I>(IEnumerable<I> input, int size, Actio
 ```
 
 ```csharp
-public static async UniTaskVoid Process<I, O>(IEnumerable<I> input, int size, Func<I, O> process, Action<Batch<I>>? preProcess, Action<Batch<I>, O[]>? postProcess)
+public static async UniTask<IEnumerable<O>> Process<I, O>(IEnumerable<I> input, int size, Func<I, O> process, Action<Batch<I>>? preProcess, Action<Batch<I>, O[]>? postProcess)
 ```
 
 the difference between the two is in the *for each process*, one takes a `Func<I, O>` and one takes an `Action<I>`.
 Use the Func overload if you want your tasks to return something, the result is also an array corresponding to each input.
 
-PreProcess & PostProcess callbacks are run on main thread and are optional.
+PreProcess & PostProcess callbacks are run on main thread for each batch and can be null.
 
 </TabItem>
 <TabItem value="api">
