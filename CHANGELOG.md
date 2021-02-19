@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/BLaZeKiLL/CBSL/compare/v1.4.1...v1.4.2) (2021-02-19)
+
+
+### Bug Fixes
+
+* Merge pull request [#27](https://github.com/BLaZeKiLL/CBSL/issues/27) from BLaZeKiLL/fix/unitask-void-removed ([261d46d](https://github.com/BLaZeKiLL/CBSL/commit/261d46d0a0c57413ad874a0df5412d8036d2c1e3))
+
 ## [1.4.1](https://github.com/BLaZeKiLL/CBSL/compare/v1.4.0...v1.4.1) (2021-02-19)
 
 
