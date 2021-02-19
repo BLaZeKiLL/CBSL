@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/BLaZeKiLL/CBSL/compare/v1.4.0...v1.4.1) (2021-02-19)
+
+
+### Bug Fixes
+
+* Merge pull request [#26](https://github.com/BLaZeKiLL/CBSL/issues/26) from BLaZeKiLL/fix/scheduler-return-type ([333d03d](https://github.com/BLaZeKiLL/CBSL/commit/333d03ddf63330f2405ad083746eae7de261890e))
+
 # [1.4.0](https://github.com/BLaZeKiLL/CBSL/compare/v1.3.4...v1.4.0) (2021-02-17)
 
 
