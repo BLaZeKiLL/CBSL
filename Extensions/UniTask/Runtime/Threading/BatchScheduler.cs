@@ -8,7 +8,7 @@ namespace CBSL.Extension.UniTask.Threading {
 
     public static class BatchScheduler {
 
-        public static async UniTaskVoid Process<I>(IEnumerable<I> input, int size, Action<I> process, Action<Batch<I>>? preProcess, Action<Batch<I>>? postProcess) {
+        public static async Cysharp.Threading.Tasks.UniTask Process<I>(IEnumerable<I> input, int size, Action<I> process, Action<Batch<I>>? preProcess, Action<Batch<I>>? postProcess) {
             var batches = Batch<I>.CreateBatches(input, size);
             var tasks = new Cysharp.Threading.Tasks.UniTask[batches.Length];
 
@@ -27,7 +27,7 @@ namespace CBSL.Extension.UniTask.Threading {
                 tasks[index] = InternalProcess(batches[index], process, preProcess, postProcess);
             }
 
-            return (await Cysharp.Threading.Tasks.UniTask.WhenAll(tasks)).SelectMany(x =>x);
+            return (await Cysharp.Threading.Tasks.UniTask.WhenAll(tasks)).SelectMany(x => x);
         }
 
         private static async UniTask<O[]> InternalProcess<I, O>(Batch<I> batch, Func<I, O> process, Action<Batch<I>>? preProcess, Action<Batch<I>, O[]>? postProcess) {
