@@ -86,4 +86,9 @@ module.exports = {
       },
     ],
   ],
+  scripts: [{
+    src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
+    'data-ad-client': 'ca-pub-1180153293586382',
+    async: true,
+  }]
 };
