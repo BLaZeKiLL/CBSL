@@ -73,7 +73,11 @@ jobs:
       - name: Build
         run: yarn build
       - name: Release
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./Docs/build
+        run: |
+          git branch -d docs &> /dev/null || echo docs branch not found
+          git subtree split -P build -b docs
+          git push origin --all
+        # uses: peaceiris/actions-gh-pages@v3
+        # with:
+        #   github_token: ${{ secrets.GITHUB_TOKEN }}
+        #   publish_dir: ./Docs/build

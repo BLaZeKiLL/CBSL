@@ -1,8 +1,8 @@
 module.exports = {
   title: 'CBSL',
   tagline: 'Runtime components too author game logic',
-  url: 'https://blazekill.github.io',
-  baseUrl: '/CBSL/',
+  url: 'https://cbsl.netlify.app',
+  baseUrl: '/',
   organizationName: 'codeblaze',
   projectName: 'cbsl',
   onBrokenLinks: 'throw',
