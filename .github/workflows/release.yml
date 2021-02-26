@@ -43,9 +43,6 @@ jobs:
     needs: ReleaseUPM
     if: needs.ReleaseUPM.outputs.release == 'true' || startsWith(github.event.head_commit.message, 'docs:')
     runs-on: ubuntu-18.04
-    defaults:
-      run:
-        
     steps:
       - name: Checkout
         uses: actions/checkout@v2
