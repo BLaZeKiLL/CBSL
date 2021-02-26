@@ -74,6 +74,8 @@ jobs:
         run: yarn build
       - name: Release
         run: |
+          git config --global user.email \<\>
+          git config --global user.name "semantic-release-bot"
           git branch -d docs &> /dev/null || echo docs branch not found
           git add ./Docs/build && git commit -m "chore(docs): ${{ needs.ReleaseUPM.outputs.version }} [skip ci]"
           git subtree split -P ./Docs/build -b docs
