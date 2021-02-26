@@ -2,6 +2,7 @@
 /node_modules
 
 # Production removed for github pipelines
+# TODO : NEED BETTER SOLUTION (Un-Ignore only in CI)
 # /build 
 
 # Generated files
