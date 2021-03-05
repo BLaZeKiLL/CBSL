@@ -7,7 +7,7 @@ on:
 
 jobs:
   ReleaseUPM:
-    name: Release to OpenUPM
+    name: Release OpenUPM
     runs-on: ubuntu-18.04
     outputs:
       release: ${{ steps.semantic.outputs.new_release_published }}
@@ -40,7 +40,7 @@ jobs:
           git tag upm/v${{ steps.semantic.outputs.new_release_version }} release
           git push origin --tags
   ReleaseDocs:
-    name: Publish docs to Github Pages
+    name: Release Docs
     needs: ReleaseUPM
     if: needs.ReleaseUPM.outputs.release == 'true' || startsWith(github.event.head_commit.message, 'docs:')
     runs-on: ubuntu-18.04
