@@ -1,0 +1,18 @@
+{
+    "name": "CBSL.Manager",
+    "rootNamespace": "CBSL.ManagerFramework",
+    "references": [
+        "GUID:97ae58377b8dfce4dbe768a56d9a3bb0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "CBSL_MANAGER"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
