@@ -9,14 +9,15 @@ namespace CBSL.ManagerFramework {
 
     public class LazyManager<T> where T : LazyManager<T>, new() {
 
-        private static Lazy<T> _current = new Lazy<T>(() => {
-            var manager = new T();
-            manager.OnInitialize();
+        private static T _current;
 
-            return manager;
-        });
+        public static T Current {
+            get {
+                if (_current == null) Initialize();
 
-        public static T Current => _current.Value;
+                return _current;
+            }
+        }
 
         private InternalBehaviour _Behaviour { get; }
 
@@ -31,6 +32,12 @@ namespace CBSL.ManagerFramework {
             };
         }
         
+        private static void Initialize() {
+            if (_current != null) throw new InvalidOperationException("Instance of this manager is already presented in the scene.");
+            _current = new T();
+            _current.OnInitialize();
+        }
+        
         protected virtual void OnInitialize() {}
         
         protected virtual void OnDestroy() {}
@@ -42,7 +49,7 @@ namespace CBSL.ManagerFramework {
         protected virtual void OnDrawGizmos() {}
         
         protected TChild InstantiateChild<TChild>(TChild original) where TChild : UnityEngine.Object =>
-            UnityEngine.Object.Instantiate<TChild>(original, _Behaviour.transform);
+            UnityEngine.Object.Instantiate(original, _Behaviour.transform);
 
         protected Coroutine StartCoroutine(IEnumerator routine) => _Behaviour.StartCoroutine(routine);
 
