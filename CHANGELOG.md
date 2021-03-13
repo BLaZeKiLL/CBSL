@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/BLaZeKiLL/CBSL/compare/v1.4.2...v1.5.0) (2021-03-13)
+
+
+### Features
+
+* Merge pull request [#41](https://github.com/BLaZeKiLL/CBSL/issues/41) from BLaZeKiLL/feat/manager ([a28f19d](https://github.com/BLaZeKiLL/CBSL/commit/a28f19d60748dbbc90195933d8ae823bc9e025dd))
+
 ## [1.4.2](https://github.com/BLaZeKiLL/CBSL/compare/v1.4.1...v1.4.2) (2021-02-19)
 
 
