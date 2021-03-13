@@ -574,7 +574,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    1: CBSL_LOGGING;CBSL_EXT_UNITASK
+    1: CBSL_LOGGING;CBSL_MANAGER;CBSL_EXT_UNITASK
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
