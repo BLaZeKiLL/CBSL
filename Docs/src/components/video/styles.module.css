@@ -1,0 +1,15 @@
+.tomato {
+  background-color: tomato;
+}
+
+.container {
+  position:relative;
+  padding-top:56.25%;
+  margin-bottom: var(--ifm-leading);
+}
+
+.frame {
+  position: absolute;
+  top: 0;
+  left: 0
+}
