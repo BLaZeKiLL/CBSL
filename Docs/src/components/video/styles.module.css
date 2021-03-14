@@ -1,7 +1,3 @@
-.tomato {
-  background-color: tomato;
-}
-
 .container {
   position:relative;
   padding-top:56.25%;
@@ -9,6 +5,7 @@
 }
 
 .frame {
+  border-radius: var(--ifm-alert-border-radius);
   position: absolute;
   top: 0;
   left: 0
