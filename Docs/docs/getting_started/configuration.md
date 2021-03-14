@@ -19,7 +19,7 @@ For extensions the corresponding base dependecy needs to be installed mannualy
 | Module             | Define                   |
 |--------------------|--------------------------|
 | Logging            | `CBSL_LOGGING`           |
-| Manager Framework  | `CBSL_MANAGER_FRAMEWORK` |
+| Manager Framework  | `CBSL_MANAGER`           |
 
 ## Extension Defines
 

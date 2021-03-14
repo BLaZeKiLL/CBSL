@@ -21,6 +21,12 @@ module.exports = {
         'modules/logging/introduction',
         'modules/logging/logger',
       ]
+    }, {
+      'Manager Framework': [
+        'modules/manager/introduction',
+        'modules/manager/scene_controller',
+        'modules/manager/manager'
+      ]
     }],
     Extensions: [{
       UniTask: [
