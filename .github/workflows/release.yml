@@ -77,8 +77,8 @@ jobs:
           git config --global user.email \<\>
           git config --global user.name "semantic-release-bot"
           (git add Docs/build && git commit -m "chore(docs): ${{ needs.ReleaseUPM.outputs.version }} [skip ci]") &> /dev/null || echo no update
-          git branch -d docs &> /dev/null || echo docs branch not found
-          git subtree split -P Docs/build -b docs
+          git branch -d documentation &> /dev/null || echo docs branch not found
+          git subtree split -P Docs/build -b documentation
           git push origin --all -f
         # uses: peaceiris/actions-gh-pages@v3
         # with:
