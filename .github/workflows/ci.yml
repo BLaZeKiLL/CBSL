@@ -30,7 +30,7 @@ jobs:
           key: Library
           restore-keys: |
             Library
-      - uses: game-ci/unity-test-runner@v2.0-alpha-3
+      - uses: game-ci/unity-test-runner@v2
         id: tests
         with:
           unityVersion: ${{ matrix.unityVersion }}
