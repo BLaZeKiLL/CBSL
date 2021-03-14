@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace CBSL.Core.Collections.Compressed {
 
-    public class CompressedArray<T> {
+    public class CompressedByteList<T> : ICompressedArray<T, List<byte>> {
         
         public DataState State { get; private set; }
-        public int Length { get; private set; }
+        public int Length { get; }
         public int DataSize { get; }
 
         private Func<byte[], T> _fromBytes;
@@ -16,7 +16,7 @@ namespace CBSL.Core.Collections.Compressed {
         
         private object _data;
 
-        public CompressedArray(T[] data, int dataSize, Func<byte[], T> fromBytes, Func<T, byte[]> getBytes) {
+        public CompressedByteList(T[] data, int dataSize, Func<byte[], T> fromBytes, Func<T, byte[]> getBytes) {
             _data = data;
             Length = data.Length;
             DataSize = dataSize;
@@ -25,7 +25,7 @@ namespace CBSL.Core.Collections.Compressed {
             State = DataState.DECOMPRESSED;
         }
 
-        public CompressedArray(List<byte> bytes, int length, int dataSize, Func<byte[], T> fromBytes, Func<T, byte[]> getBytes) {
+        public CompressedByteList(List<byte> bytes, int length, int dataSize, Func<byte[], T> fromBytes, Func<T, byte[]> getBytes) {
             _data = bytes;
             Length = length;
             DataSize = dataSize;
@@ -36,8 +36,8 @@ namespace CBSL.Core.Collections.Compressed {
 
         public T GetAt(int index) {
             return State switch {
-                DataState.COMPRESSED => GetInCompressed(index),
-                DataState.DECOMPRESSED => GetDeCompressedData()[index],
+                DataState.COMPRESSED => InternalGetAt(index),
+                DataState.DECOMPRESSED => GetDecompressedData()[index],
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
@@ -47,7 +47,7 @@ namespace CBSL.Core.Collections.Compressed {
                 case DataState.COMPRESSED:
                     throw new NotImplementedException("Set at for compressed data not implemented");
                 case DataState.DECOMPRESSED:
-                    GetDeCompressedData()[index] = obj;
+                    GetDecompressedData()[index] = obj;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -60,58 +60,68 @@ namespace CBSL.Core.Collections.Compressed {
             return (List<byte>) _data;
         }
 
-        public T[] GetDeCompressedData() {
+        public T[] GetDecompressedData() {
             if (State != DataState.DECOMPRESSED) throw new InvalidOperationException("Data not decompressed");
 
             return (T[]) _data;
         }
         
         public void Compress() {
-            var data = GetDeCompressedData();
-            var bytes = new List<byte>();
+            _data = InternalCompress(GetDecompressedData());
+            State = DataState.COMPRESSED;
+        }
+
+        public void Decompress() {
+            _data = InternalDecompress(GetCompressedData());
+            State = DataState.DECOMPRESSED;
+        }
+
+        public T[] GetDecompressed() => InternalDecompress(GetCompressedData());
+
+        public List<byte> GetCompressed() => InternalCompress(GetDecompressedData());
+
+        private List<byte> InternalCompress(T[] data) {
+            var compressed = new List<byte>();
             var cdata = data[0];
             var index = 0;
             
-            bytes.AddRange(_getBytes(cdata));
+            compressed.AddRange(_getBytes(cdata));
 
             for (int i = 1; i < data.Length; i++) {
                 index++;
 
                 if (data[i].Equals(cdata)) continue;
                 
-                bytes.AddRange(BitConverter.GetBytes(index));
+                compressed.AddRange(BitConverter.GetBytes(index));
                 cdata = data[i];
-                bytes.AddRange(_getBytes(cdata));
+                compressed.AddRange(_getBytes(cdata));
             }
 
-            bytes.AddRange(BitConverter.GetBytes(++index));
+            compressed.AddRange(BitConverter.GetBytes(++index));
 
-            _data = bytes;
-            State = DataState.COMPRESSED;
+            return compressed;
         }
 
-        public void DeCompress() {
-            var bytes = GetCompressedData();
-            var data = new T[Length];
+        private T[] InternalDecompress(List<byte> data) {
+            var decompressed = new T[Length];
             var step = DataSize + sizeof(int);
-            var bindex = 0;
+            var index = 0;
 
-            for (int i = 0; i < bytes.Count; i += step) {
-                var obj = _fromBytes(bytes.GetRange(i, DataSize).ToArray());
-                var count = BitConverter.ToInt32(bytes.GetRange(i + DataSize, sizeof(int)).ToArray(), 0);
+            for (int i = 0; i < data.Count; i += step) {
+                var obj = _fromBytes(data.GetRange(i, DataSize).ToArray());
+                var count = BitConverter.ToInt32(data.GetRange(i + DataSize, sizeof(int)).ToArray(), 0);
 
-                for (int j = bindex; j < count; j++) {
-                    data[j] = obj;
+                for (int j = index; j < count; j++) {
+                    decompressed[j] = obj;
                 }
 
-                bindex = count;
+                index = count;
             }
 
-            _data = data;
-            State = DataState.DECOMPRESSED;
+            return decompressed;
         }
 
-        private T GetInCompressed(int index) {
+        private T InternalGetAt(int index) {
             var data = GetCompressedData();
             var min = 0;
             var max = Mathf.CeilToInt((float) data.Count / (DataSize + sizeof(int)));
@@ -128,15 +138,6 @@ namespace CBSL.Core.Collections.Compressed {
             
             return _fromBytes(data.GetRange(min * (DataSize + sizeof(int)), DataSize).ToArray());
         }
-
-        public enum DataState {
-
-            COMPRESSED,
-            DECOMPRESSED
-
-        }
-        
-        
 
     }
 

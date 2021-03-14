@@ -7,13 +7,13 @@ using NUnit.Framework;
 
 namespace CBSL.Core.Test.Runtime.Collections.Compressed {
 
-    public class CompressedArrayTest {
+    public class CompressedByteListTest {
 
         [Test]
         public void ShouldCompressData() {
             var data = new int[4096];
 
-            var array = new CompressedArray<int>(data, sizeof(int), _fromBytes, BitConverter.GetBytes);
+            var array = new CompressedByteList<int>(data, sizeof(int), _fromBytes, BitConverter.GetBytes);
             
             array.Compress();
 
@@ -27,16 +27,16 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
         }
 
         [Test]
-        public void ShouldDeCompressData() {
+        public void ShouldDecompressData() {
             var bytes = new List<byte>();
             bytes.AddRange(BitConverter.GetBytes(0));
             bytes.AddRange(BitConverter.GetBytes(4096));
 
-            var array = new CompressedArray<int>(bytes, 4096, sizeof(int), _fromBytes, BitConverter.GetBytes);
+            var array = new CompressedByteList<int>(bytes, 4096, sizeof(int), _fromBytes, BitConverter.GetBytes);
             
-            array.DeCompress();
+            array.Decompress();
 
-            var actual = array.GetDeCompressedData();
+            var actual = array.GetDecompressedData();
             
             var expected = new int[4096];
             
@@ -53,13 +53,13 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
                 }
             }
 
-            var array = new CompressedArray<int>(expected, sizeof(int), _fromBytes, BitConverter.GetBytes);
+            var array = new CompressedByteList<int>(expected, sizeof(int), _fromBytes, BitConverter.GetBytes);
             
             array.Compress();
             
-            array.DeCompress();
+            array.Decompress();
 
-            var actual = array.GetDeCompressedData();
+            var actual = array.GetDecompressedData();
 
             Assert.That(actual, Is.EquivalentTo(expected));
         }
@@ -74,7 +74,7 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
                 }
             }
             
-            var array = new CompressedArray<int>(expected, sizeof(int), _fromBytes, BitConverter.GetBytes);
+            var array = new CompressedByteList<int>(expected, sizeof(int), _fromBytes, BitConverter.GetBytes);
             
             array.Compress();
 
