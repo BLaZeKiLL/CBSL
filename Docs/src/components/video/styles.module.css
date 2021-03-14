@@ -1,0 +1,12 @@
+.container {
+  position:relative;
+  padding-top:56.25%;
+  margin-bottom: var(--ifm-leading);
+}
+
+.frame {
+  border-radius: var(--ifm-alert-border-radius);
+  position: absolute;
+  top: 0;
+  left: 0
+}

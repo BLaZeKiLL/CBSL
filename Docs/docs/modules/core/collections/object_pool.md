@@ -4,6 +4,7 @@ title: Object Pool
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Video from '@site/src/components/video';
 
 <Tabs
   defaultValue="overview"
@@ -16,6 +17,8 @@ import TabItem from '@theme/TabItem';
 
 Objects Pool's provide an efficient alternative to contineously instantiating and destroying objects.
 instead objects are reused as per demand from the pool.
+
+<Video src="https://www.youtube.com/embed/dmpDMDe2Wdk"/>
 
 CBSL provides 2 general purpose object pools :-
 - ObjectPool - Fixed size pool which creates objects at time of pool initialization

@@ -4,6 +4,7 @@ title: Provider
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Video from '@site/src/components/video';
 
 <Tabs
   defaultValue="overview"
@@ -71,6 +72,10 @@ var component = Provider<TestProvider>.Current.CreateComponent();
 working on a tool to auto-generate api docs.
 </TabItem>
 <TabItem value="example">
+
+Provider pattern used in a voxel engine
+
+<Video src="https://www.youtube.com/embed/I5pKr6fnne0"/>
 
 #### Below example shows how a provider is being used in a voxel terrain generation system.
 

@@ -4,12 +4,14 @@ title: Compressed Array
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Video from '@site/src/components/video';
 
 <Tabs
   defaultValue="overview"
   values={[
     {label: 'Overview', value: 'overview'},
     {label: 'API', value: 'api'},
+    {label: 'Example', value: 'example'},
   ]}>
 <TabItem value="overview">
 
@@ -62,5 +64,12 @@ Complexity of ***GetAt()*** in ***Compressed*** state is `O(logn)`, internally b
 </TabItem>
 <TabItem value="api">
 working on a tool to auto-generate api docs.
+</TabItem>
+<TabItem value="example">
+
+Compressed array in action, part of a voxel engine
+
+<Video src="https://www.youtube.com/embed/a4wjYq3jN4g"/>
+
 </TabItem>
 </Tabs>

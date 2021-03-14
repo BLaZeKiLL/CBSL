@@ -30,15 +30,11 @@ jobs:
           key: Library
           restore-keys: |
             Library
-      - uses: game-ci/unity-test-runner@v2.0-alpha-3
+      - uses: game-ci/unity-test-runner@v2
         id: tests
         with:
           unityVersion: ${{ matrix.unityVersion }}
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/upload-artifact@v1
-        with:
-          name: Test results for ${{ matrix.testMode }}
-          path: ${{ steps.tests.outputs.artifactsPath }}
   DocTest:
     name: Docs build test
     runs-on: ubuntu-18.04
