@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/BLaZeKiLL/CBSL/compare/v1.5.0...v1.6.0) (2021-03-15)
+
+
+### Features
+
+* Compressed Node List ([#43](https://github.com/BLaZeKiLL/CBSL/issues/43)) ([cf678c2](https://github.com/BLaZeKiLL/CBSL/commit/cf678c22286a835b3fcf4ed82a79666ab8a9e501))
+
 # [1.5.0](https://github.com/BLaZeKiLL/CBSL/compare/v1.4.2...v1.5.0) (2021-03-13)
 
 
