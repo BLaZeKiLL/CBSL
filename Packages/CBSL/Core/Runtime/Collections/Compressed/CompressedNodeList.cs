@@ -3,22 +3,23 @@ using System.Collections.Generic;
 
 namespace CBSL.Core.Collections.Compressed {
 
-    public class CompressedLinkedList<T> : ICompressedArray<T, LinkedList<CompressedLinkedList<T>.Node>> {
+    public class CompressedNodeList<T> : ICompressedArray<T, List<CompressedNodeList<T>.Node>> {
 
         public DataState State { get; private set; }
-        
         public int Length { get; }
 
         private object _data;
 
-        public CompressedLinkedList(T[] data) {
+        public CompressedNodeList(T[] data) {
             _data = data;
             Length = data.Length;
+            State = DataState.DECOMPRESSED;
         }
 
-        public CompressedLinkedList(LinkedList<Node> data, int originalLength) {
+        public CompressedNodeList(List<Node> data, int originalLength) {
             _data = data;
             Length = originalLength;
+            State = DataState.COMPRESSED;
         }
 
         public void Compress() {
@@ -31,11 +32,14 @@ namespace CBSL.Core.Collections.Compressed {
             State = DataState.DECOMPRESSED;
         }
 
-        public T GetAt(int index) => State switch {
-            DataState.COMPRESSED => InternalGetAt(index),
-            DataState.DECOMPRESSED => GetDecompressedData()[index],
-            _ => throw new ArgumentOutOfRangeException()
-        };
+        public T GetAt(int index) {
+            if (index >= Length) throw new IndexOutOfRangeException($"{index} is out of range for the given data");
+            return State switch {
+                DataState.COMPRESSED => InternalGetAt(index),
+                DataState.DECOMPRESSED => GetDecompressedData()[index],
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
 
         public void SetAt(int index, T obj) {
             switch (State) {
@@ -51,7 +55,7 @@ namespace CBSL.Core.Collections.Compressed {
 
         public T[] GetDecompressed() => InternalDecompress(GetCompressedData());
 
-        public LinkedList<Node> GetCompressed() => InternalCompress(GetDecompressedData());
+        public List<Node> GetCompressed() => InternalCompress(GetDecompressedData());
         
         public T[] GetDecompressedData() {
             if (State != DataState.DECOMPRESSED) throw new InvalidOperationException("Data not decompressed");
@@ -59,42 +63,42 @@ namespace CBSL.Core.Collections.Compressed {
             return (T[]) _data;
         }
 
-        public LinkedList<Node> GetCompressedData() {
+        public List<Node> GetCompressedData() {
             if (State != DataState.COMPRESSED) throw new InvalidOperationException("Data not compressed");
 
-            return (LinkedList<Node>) _data;
+            return (List<Node>) _data;
         }
 
-        private LinkedList<Node> InternalCompress(T[] data) {
-            var compressed = new LinkedList<Node>();
+        private List<Node> InternalCompress(T[] data) {
+            var compressed = new List<Node>();
             var cdata = data[0];
             var index = 0;
 
             for (int i = 1; i < Length; i++) {
-                
-                if (!data[i].Equals(cdata)) {
-                    compressed.AddLast(new Node {
-                        Count = index,
-                        Object = cdata
-                    });
-
-                    cdata = data[i];
-                }
-                
                 index++;
+
+                if (data[i].Equals(cdata)) continue;
+
+                compressed.Add(new Node(index, cdata));
+
+                cdata = data[i];
             }
 
+            compressed.Add(new Node(++index, cdata));
+            
             return compressed;
         }
 
-        private T[] InternalDecompress(LinkedList<Node> data) {
+        private T[] InternalDecompress(List<Node> data) {
             var decompressed = new T[Length];
             var index = 0;
 
             foreach (var node in data) {
                 for (int i = index; i < node.Count; i++) {
-                    decompressed[index] = node.Object;
+                    decompressed[i] = node.Object;
                 }
+
+                index = node.Count;
             }
 
             return decompressed;
@@ -102,21 +106,31 @@ namespace CBSL.Core.Collections.Compressed {
 
         private T InternalGetAt(int index) {
             var data = GetCompressedData();
+            var min = 0;
+            var max = data.Count;
 
-            var node = data.First;
+            while (min <= max) {
+                var mid = (max + min) / 2;
+                var count = data[mid].Count;
 
-            while (node.Next != null) {
-                if (node.Value.Count == index) return node.Value.Object;
-                if (node.Value.Count < index && node.Previous?.Value.Count >= index) return node.Previous.Value.Object;
+                if (index == count) return data[mid + 1].Object;
+
+                if (index < count) max = mid - 1;
+                else min = mid + 1;
             }
 
-            throw new IndexOutOfRangeException($"{index} is out of range for the given data");
+            return data[min].Object;
         }
 
-        public struct Node {
+        public readonly struct Node {
 
-            public int Count { get; set; }
-            public T Object { get; set; }
+            public int Count { get; }
+            public T Object { get; }
+
+            public Node(int count, T obj) {
+                Count = count;
+                Object = obj;
+            }
 
         }
 

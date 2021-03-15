@@ -35,6 +35,7 @@ namespace CBSL.Core.Collections.Compressed {
         }
 
         public T GetAt(int index) {
+            if (index >= Length) throw new IndexOutOfRangeException($"{index} is out of range for the given data");
             return State switch {
                 DataState.COMPRESSED => InternalGetAt(index),
                 DataState.DECOMPRESSED => GetDecompressedData()[index],
