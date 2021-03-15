@@ -10,7 +10,13 @@ module.exports = {
         'modules/core/introduction',
         {
           Collections: [
-            'modules/core/collections/compressed_array',
+            {
+              'Compressed Array': [
+                'modules/core/collections/compressed_array/introduction',
+                'modules/core/collections/compressed_array/byte_list',
+                'modules/core/collections/compressed_array/node_list',
+              ]
+            },
             'modules/core/collections/object_pool'
           ]
         },

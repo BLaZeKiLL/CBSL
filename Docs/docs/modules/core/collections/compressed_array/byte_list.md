@@ -1,40 +1,42 @@
 ---
-title: Compressed Array
+title: Byte List
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Video from '@site/src/components/video';
 
 <Tabs
   defaultValue="overview"
   values={[
     {label: 'Overview', value: 'overview'},
     {label: 'API', value: 'api'},
-    {label: 'Example', value: 'example'},
   ]}>
 <TabItem value="overview">
 
-In cases where you have large arrays with the same elements repeating contineously, Compressed Array can be used to reduce memory ussage.
+## Layout
 
 ```javascript title="Uncompressed Array"
 [A,A,A,A,A,A,A,B,B,B,B,C,C,C,C,C,C,C,C,C,C,C]
 ```
 
-can be compressed to
+would be compressed to
 
-```javascript title="Compressed Array"
-[A,7,B,4,C,11]
+```javascript title="CompressedByteList"
+[<A as bytes>,<7 as bytes>,<B as bytes>,<4 as bytes>,<C as bytes>,<11 as bytes>]
 ```
+
+you need to specify how to convert you objects to and from bytes
+
+---
 
 ## Usage
 
-Compressed Array has 2 constructors :-
+CompressedByteList has 2 constructors :-
 
 ```csharp
 public CompressedArray(T[] data, int dataSize, Func<byte[], T> fromBytes, Func<T, byte[]> getBytes) { }
 
-public CompressedArray(List<byte> bytes, int length, int dataSize, Func<byte[], T> fromBytes, Func<T, byte[]> getBytes) { }
+public CompressedArray(List<byte> bytes, int originalLength, int dataSize, Func<byte[], T> fromBytes, Func<T, byte[]> getBytes) { }
 ```
 allowing you to create the array from both compressed and uncompressed data
 
@@ -45,11 +47,12 @@ these are provided as func's
 ```csharp title="Compressed Array of int's"
 var array = new CompressedArray<int>(data, sizeof(int), bytes => BitConverter.ToInt32(bytes, 0), BitConverter.GetBytes);
 ```
-`Compress()` & `DeCompress()` methods can be called on the array to change it's state anytime
 
 :::info Serialization
 In compressed format data is stored as list of bytes making it easy to read and write to disk
 :::
+
+---
 
 ## Data Access
 
@@ -64,12 +67,5 @@ Complexity of ***GetAt()*** in ***Compressed*** state is `O(logn)`, internally b
 </TabItem>
 <TabItem value="api">
 working on a tool to auto-generate api docs.
-</TabItem>
-<TabItem value="example">
-
-Compressed array in action, part of a voxel engine
-
-<Video src="https://www.youtube.com/embed/a4wjYq3jN4g"/>
-
 </TabItem>
 </Tabs>
