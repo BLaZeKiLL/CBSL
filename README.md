@@ -8,6 +8,8 @@ CBSL provides modules that help you author game logic.
 ![Release](https://github.com/BLaZeKiLL/CBSL/workflows/Release/badge.svg)
 ![GitHub](https://img.shields.io/github/license/BLaZeKiLL/CBSL)
 
+### You can find the documentation [Here](https://cbsl.netlify.app/)
+
 CBSL is made up of the following modules :-
 - Core - set of usefull classes, behaviours, collections and other usefull utilities
 - Logging - built on top of [unity logger](https://docs.unity3d.com/ScriptReference/Debug-unityLogger.html)
