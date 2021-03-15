@@ -7,17 +7,17 @@ using NUnit.Framework;
 
 namespace CBSL.Core.Test.Runtime.Collections.Compressed {
 
-    public class CompressedArrayTest {
+    public class CompressedByteListTest {
 
         [Test]
         public void ShouldCompressData() {
             var data = new int[4096];
 
-            var array = new CompressedArray<int>(data, sizeof(int), _fromBytes, BitConverter.GetBytes);
+            var compressedByteList = new CompressedByteList<int>(data, sizeof(int), _fromBytes, BitConverter.GetBytes);
             
-            array.Compress();
+            compressedByteList.Compress();
 
-            var actual = array.GetCompressedData();
+            var actual = compressedByteList.GetCompressedData();
 
             var expected = new List<byte>();
             expected.AddRange(BitConverter.GetBytes(0));
@@ -27,16 +27,16 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
         }
 
         [Test]
-        public void ShouldDeCompressData() {
-            var bytes = new List<byte>();
-            bytes.AddRange(BitConverter.GetBytes(0));
-            bytes.AddRange(BitConverter.GetBytes(4096));
+        public void ShouldDecompressData() {
+            var data = new List<byte>();
+            data.AddRange(BitConverter.GetBytes(0));
+            data.AddRange(BitConverter.GetBytes(4096));
 
-            var array = new CompressedArray<int>(bytes, 4096, sizeof(int), _fromBytes, BitConverter.GetBytes);
+            var compressedByteList = new CompressedByteList<int>(data, 4096, sizeof(int), _fromBytes, BitConverter.GetBytes);
             
-            array.DeCompress();
+            compressedByteList.Decompress();
 
-            var actual = array.GetDeCompressedData();
+            var actual = compressedByteList.GetDecompressedData();
             
             var expected = new int[4096];
             
@@ -45,23 +45,23 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
 
         [Test]
         public void RandomDataCompression() {
-            var expected = new int[4096];
+            var data = new int[4096];
 
             for (int i = 0; i < 32; i++) {
                 for (int j = 0; j < 128; j++) {
-                    expected[i * 128 + j] = i;
+                    data[i * 128 + j] = i;
                 }
             }
 
-            var array = new CompressedArray<int>(expected, sizeof(int), _fromBytes, BitConverter.GetBytes);
+            var compressedByteList = new CompressedByteList<int>(data, sizeof(int), _fromBytes, BitConverter.GetBytes);
             
-            array.Compress();
+            compressedByteList.Compress();
             
-            array.DeCompress();
+            compressedByteList.Decompress();
 
-            var actual = array.GetDeCompressedData();
+            var actual = compressedByteList.GetDecompressedData();
 
-            Assert.That(actual, Is.EquivalentTo(expected));
+            Assert.That(actual, Is.EquivalentTo(data));
         }
 
         [Test]
@@ -74,14 +74,14 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
                 }
             }
             
-            var array = new CompressedArray<int>(expected, sizeof(int), _fromBytes, BitConverter.GetBytes);
+            var compressedByteList = new CompressedByteList<int>(expected, sizeof(int), _fromBytes, BitConverter.GetBytes);
             
-            array.Compress();
+            compressedByteList.Compress();
 
             var actual = new int[4096];
 
             for (int i = 0; i < 4096; i++) {
-                actual[i] = array.GetAt(i);
+                actual[i] = compressedByteList.GetAt(i);
             }
 
             Assert.That(actual, Is.EquivalentTo(expected));

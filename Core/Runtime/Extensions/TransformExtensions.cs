@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace CBSL.Core.Extensions {
 
-    public static class Utils {
+    public static class TransformExtensions {
 
         /// <summary>
         /// Destroy all children of transform 
