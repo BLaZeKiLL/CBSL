@@ -7,13 +7,13 @@ using NUnit.Framework;
 
 namespace CBSL.Core.Test.Runtime.Collections.Compressed {
 
-    public class CompressedByteListTest {
+    public class CompressedByteArrayTest {
 
         [Test]
         public void ShouldCompressData() {
             var data = new int[4096];
 
-            var compressedByteList = new CompressedByteList<int>(data, sizeof(int), _fromBytes, BitConverter.GetBytes);
+            var compressedByteList = new CompressedByteArray<int>(data, sizeof(int), _fromBytes, BitConverter.GetBytes);
             
             compressedByteList.Compress();
 
@@ -32,7 +32,7 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
             data.AddRange(BitConverter.GetBytes(0));
             data.AddRange(BitConverter.GetBytes(4096));
 
-            var compressedByteList = new CompressedByteList<int>(data, 4096, sizeof(int), _fromBytes, BitConverter.GetBytes);
+            var compressedByteList = new CompressedByteArray<int>(data, 4096, sizeof(int), _fromBytes, BitConverter.GetBytes);
             
             compressedByteList.Decompress();
 
@@ -53,7 +53,7 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
                 }
             }
 
-            var compressedByteList = new CompressedByteList<int>(data, sizeof(int), _fromBytes, BitConverter.GetBytes);
+            var compressedByteList = new CompressedByteArray<int>(data, sizeof(int), _fromBytes, BitConverter.GetBytes);
             
             compressedByteList.Compress();
             
@@ -74,7 +74,7 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
                 }
             }
             
-            var compressedByteList = new CompressedByteList<int>(expected, sizeof(int), _fromBytes, BitConverter.GetBytes);
+            var compressedByteList = new CompressedByteArray<int>(expected, sizeof(int), _fromBytes, BitConverter.GetBytes);
             
             compressedByteList.Compress();
 

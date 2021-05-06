@@ -7,28 +7,28 @@ using NUnit.Framework;
 
 namespace CBSL.Core.Test.Runtime.Collections.Compressed {
 
-    public class CompressedNodeListTest {
+    public class CompressedNodeArrayTest {
 
         [Test]
         public void ShouldCompressData() {
             var data = new int[4096];
 
-            var compressedNodeList = new CompressedNodeList<int>(data);
+            var compressedNodeList = new CompressedNodeArray<int>(data);
             
             compressedNodeList.Compress();
 
             var actual = compressedNodeList.GetCompressedData();
 
-            var expected = new List<CompressedNodeList<int>.Node> {new CompressedNodeList<int>.Node(4096, 0)};
+            var expected = new List<CompressedNodeArray<int>.Node> {new CompressedNodeArray<int>.Node(4096, 0)};
 
             Assert.That(actual, Is.EquivalentTo(expected));
         }
 
         [Test]
         public void ShouldDecompressData() {
-            var data = new List<CompressedNodeList<int>.Node> {new CompressedNodeList<int>.Node(4096, 0)};
+            var data = new List<CompressedNodeArray<int>.Node> {new CompressedNodeArray<int>.Node(4096, 0)};
 
-            var compressedNodeList = new CompressedNodeList<int>(data, 4096);
+            var compressedNodeList = new CompressedNodeArray<int>(data, 4096);
             
             compressedNodeList.Decompress();
 
@@ -49,7 +49,7 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
                 }
             }
 
-            var compressedNodeList = new CompressedNodeList<int>(data);
+            var compressedNodeList = new CompressedNodeArray<int>(data);
             
             compressedNodeList.Compress();
             
@@ -70,7 +70,7 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
                 }
             }
             
-            var compressedNodeList = new CompressedNodeList<int>(data);
+            var compressedNodeList = new CompressedNodeArray<int>(data);
             
             compressedNodeList.Compress();
 

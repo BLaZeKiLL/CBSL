@@ -3,20 +3,20 @@ using System.Collections.Generic;
 
 namespace CBSL.Core.Collections.Compressed {
 
-    public class CompressedNodeList<T> : ICompressedArray<T, List<CompressedNodeList<T>.Node>> {
+    public class CompressedNodeArray<T> : ICompressedArray<T, List<CompressedNodeArray<T>.Node>> {
 
         public DataState State { get; private set; }
         public int Length { get; }
 
         private object _data;
 
-        public CompressedNodeList(T[] data) {
+        public CompressedNodeArray(T[] data) {
             _data = data;
             Length = data.Length;
             State = DataState.DECOMPRESSED;
         }
 
-        public CompressedNodeList(List<Node> data, int originalLength) {
+        public CompressedNodeArray(List<Node> data, int originalLength) {
             _data = data;
             Length = originalLength;
             State = DataState.COMPRESSED;

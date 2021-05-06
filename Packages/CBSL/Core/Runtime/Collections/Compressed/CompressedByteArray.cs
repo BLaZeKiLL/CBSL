@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CBSL.Core.Collections.Compressed {
 
-    public class CompressedByteList<T> : ICompressedArray<T, List<byte>> {
+    public class CompressedByteArray<T> : ICompressedArray<T, List<byte>> {
         
         public DataState State { get; private set; }
         public int Length { get; }
@@ -16,7 +16,7 @@ namespace CBSL.Core.Collections.Compressed {
         
         private object _data;
 
-        public CompressedByteList(T[] data, int dataSize, Func<byte[], T> fromBytes, Func<T, byte[]> getBytes) {
+        public CompressedByteArray(T[] data, int dataSize, Func<byte[], T> fromBytes, Func<T, byte[]> getBytes) {
             _data = data;
             Length = data.Length;
             DataSize = dataSize;
@@ -25,7 +25,7 @@ namespace CBSL.Core.Collections.Compressed {
             State = DataState.DECOMPRESSED;
         }
 
-        public CompressedByteList(List<byte> bytes, int length, int dataSize, Func<byte[], T> fromBytes, Func<T, byte[]> getBytes) {
+        public CompressedByteArray(List<byte> bytes, int length, int dataSize, Func<byte[], T> fromBytes, Func<T, byte[]> getBytes) {
             _data = bytes;
             Length = length;
             DataSize = dataSize;
