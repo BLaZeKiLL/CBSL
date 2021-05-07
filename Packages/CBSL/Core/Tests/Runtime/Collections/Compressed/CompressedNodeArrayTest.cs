@@ -19,9 +19,29 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
 
             var actual = compressedNodeList.GetCompressedData();
 
-            var expected = new List<CompressedNodeArray<int>.Node> {new CompressedNodeArray<int>.Node(4096, 0)};
+            var expected = new List<CompressedNodeArray<int>.Node> { new CompressedNodeArray<int>.Node(4096, 0) };
 
             Assert.That(actual, Is.EquivalentTo(expected));
+        }
+
+        [Test]
+        public void ShouldCreateCompressedData() {
+            var actual = new CompressedNodeArray<int>(4096);
+
+            for (int i = 0; i < 2048; i++) {
+                actual.Add(0);
+            }
+            
+            for (int i = 2048; i < 4096; i++) {
+                actual.Add(1);
+            }
+
+            var expected = new List<CompressedNodeArray<int>.Node> {
+                new CompressedNodeArray<int>.Node(2048, 0),
+                new CompressedNodeArray<int>.Node(4096, 1)
+            };
+
+            Assert.That(actual.GetCompressedData(), Is.EquivalentTo(expected));
         }
 
         [Test]
