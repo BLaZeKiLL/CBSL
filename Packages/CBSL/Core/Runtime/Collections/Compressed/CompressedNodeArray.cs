@@ -8,6 +8,7 @@ namespace CBSL.Core.Collections.Compressed {
 
         public DataState State { get; private set; }
         public int Length { get; }
+        public int CompressedLength => GetCompressedData().Count;
 
         private object _data;
 

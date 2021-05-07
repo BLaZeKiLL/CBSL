@@ -72,6 +72,8 @@ Complexity of ***GetAt()*** in ***Compressed*** state is `O(logn)`, internally b
 ***SetAt()*** in ***Compressed*** state is not implemented yet and will throw an exception if executed.
 :::
 
+You can get the length of compressed data using ***CompressedLength***
+
 </TabItem>
 <TabItem value="api">
 working on a tool to auto-generate api docs.

@@ -13,15 +13,14 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
         public void ShouldCompressData() {
             var data = new int[4096];
 
-            var compressedNodeList = new CompressedNodeArray<int>(data);
+            var actual = new CompressedNodeArray<int>(data);
             
-            compressedNodeList.Compress();
-
-            var actual = compressedNodeList.GetCompressedData();
+            actual.Compress();
 
             var expected = new List<CompressedNodeArray<int>.Node> { new CompressedNodeArray<int>.Node(4096, 0) };
 
-            Assert.That(actual, Is.EquivalentTo(expected));
+            Assert.That(actual.CompressedLength, Is.EqualTo(1));
+            Assert.That(actual.GetCompressedData(), Is.EquivalentTo(expected));
         }
 
         [Test]
@@ -41,6 +40,7 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
                 new CompressedNodeArray<int>.Node(4096, 1)
             };
 
+            Assert.That(actual.CompressedLength, Is.EqualTo(2));
             Assert.That(actual.GetCompressedData(), Is.EquivalentTo(expected));
         }
 
@@ -48,15 +48,13 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
         public void ShouldDecompressData() {
             var data = new List<CompressedNodeArray<int>.Node> {new CompressedNodeArray<int>.Node(4096, 0)};
 
-            var compressedNodeList = new CompressedNodeArray<int>(data, 4096);
+            var actual = new CompressedNodeArray<int>(data, 4096);
             
-            compressedNodeList.Decompress();
+            actual.Decompress();
 
-            var actual = compressedNodeList.GetDecompressedData();
-            
             var expected = new int[4096];
             
-            Assert.That(actual, Is.EquivalentTo(expected));
+            Assert.That(actual.GetDecompressedData(), Is.EquivalentTo(expected));
         }
         
         [Test]
@@ -69,13 +67,13 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
                 }
             }
 
-            var compressedNodeList = new CompressedNodeArray<int>(data);
+            var compressedNodeArray = new CompressedNodeArray<int>(data);
             
-            compressedNodeList.Compress();
+            compressedNodeArray.Compress();
             
-            compressedNodeList.Decompress();
+            compressedNodeArray.Decompress();
 
-            var actual = compressedNodeList.GetDecompressedData();
+            var actual = compressedNodeArray.GetDecompressedData();
 
             Assert.That(actual, Is.EquivalentTo(data));
         }
@@ -90,14 +88,14 @@ namespace CBSL.Core.Test.Runtime.Collections.Compressed {
                 }
             }
             
-            var compressedNodeList = new CompressedNodeArray<int>(data);
+            var compressedNodeArray = new CompressedNodeArray<int>(data);
             
-            compressedNodeList.Compress();
+            compressedNodeArray.Compress();
 
             var actual = new int[4096];
 
             for (int i = 0; i < 4096; i++) {
-                actual[i] = compressedNodeList.GetAt(i);
+                actual[i] = compressedNodeArray.GetAt(i);
             }
 
             Assert.That(actual, Is.EquivalentTo(data));
