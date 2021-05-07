@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/BLaZeKiLL/CBSL/compare/v1.6.0...v1.6.1) (2021-05-07)
+
+
+### Bug Fixes
+
+* New constructor added to CompressedNodeArray ([#45](https://github.com/BLaZeKiLL/CBSL/issues/45)) ([ca61715](https://github.com/BLaZeKiLL/CBSL/commit/ca617156b3445f2018319cbb411d782dba39d0f5))
+
 # [1.6.0](https://github.com/BLaZeKiLL/CBSL/compare/v1.5.0...v1.6.0) (2021-03-15)
 
 
