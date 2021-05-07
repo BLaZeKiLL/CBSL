@@ -12,6 +12,8 @@ namespace CBSL.Core.Collections.Compressed {
 
         public void SetAt(int index, T obj);
 
+        public void Add(T obj);
+        
         public T[] GetDecompressed();
 
         public C GetCompressed();
