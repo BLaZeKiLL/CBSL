@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace CBSL.Core.Collections.Compressed {
 
+    [Obsolete]
     public class CompressedByteArray<T> : ICompressedArray<T, List<byte>> {
         
         public DataState State { get; private set; }
@@ -32,6 +33,10 @@ namespace CBSL.Core.Collections.Compressed {
             _fromBytes = fromBytes;
             _getBytes = getBytes;
             State = DataState.COMPRESSED;
+        }
+
+        public void Add(T obj) {
+            throw new NotImplementedException();
         }
 
         public T GetAt(int index) {
