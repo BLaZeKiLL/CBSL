@@ -11,13 +11,13 @@ env:
 
 jobs:
   UnityTest:
-    name: Test on version ${{ matrix.unityVersion }}
+    name: Test on unity version ${{ matrix.unityVersion }}
     runs-on: ubuntu-18.04
     strategy:
       fail-fast: false
       matrix:
         unityVersion:
-          - 2020.2.1f1
+          - 2020.3.7f1
     steps:
       - name: Checkout
         uses: actions/checkout@v2

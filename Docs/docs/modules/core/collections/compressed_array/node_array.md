@@ -1,5 +1,5 @@
 ---
-title: Node List
+title: Node Array
 ---
 
 import Tabs from '@theme/Tabs';
@@ -50,10 +50,15 @@ CompressedNodeList has 2 constructors :-
 ```csharp
 public CompressedArray(T[] data) { }
 
-public CompressedArray(List<Node> data, int originalLength) { }
+public CompressedArray(List<Node> data, int size) { }
+
+public CompressedArray(int size) { }
 ```
 
 allowing you to create the array from both compressed and uncompressed data
+
+using the third constructor you can create an empty compressed array and fill it using ***Add()*** method
+in essence creating a comppressed array directly without calling the ***Compress()*** method
 
 ---
 
@@ -66,6 +71,8 @@ Complexity of ***GetAt()*** in ***Compressed*** state is `O(logn)`, internally b
 :::danger
 ***SetAt()*** in ***Compressed*** state is not implemented yet and will throw an exception if executed.
 :::
+
+You can get the length of compressed data using ***CompressedLength***
 
 </TabItem>
 <TabItem value="api">

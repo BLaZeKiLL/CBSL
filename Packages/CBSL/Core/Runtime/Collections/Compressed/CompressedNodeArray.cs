@@ -1,25 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CBSL.Core.Collections.Compressed {
 
-    public class CompressedNodeList<T> : ICompressedArray<T, List<CompressedNodeList<T>.Node>> {
+    public class CompressedNodeArray<T> : ICompressedArray<T, List<CompressedNodeArray<T>.Node>> {
 
         public DataState State { get; private set; }
         public int Length { get; }
+        public int CompressedLength => GetCompressedData().Count;
 
         private object _data;
 
-        public CompressedNodeList(T[] data) {
+        public readonly struct Node {
+
+            public int Count { get; }
+            public T Object { get; }
+
+            public Node(int count, T obj) {
+                Count = count;
+                Object = obj;
+            }
+
+        }
+        
+        public CompressedNodeArray(IReadOnlyCollection<T> data) {
             _data = data;
-            Length = data.Length;
+            Length = data.Count;
             State = DataState.DECOMPRESSED;
         }
 
-        public CompressedNodeList(List<Node> data, int originalLength) {
+        public CompressedNodeArray(List<Node> data, int size) {
             _data = data;
-            Length = originalLength;
+            Length = size;
             State = DataState.COMPRESSED;
+        }
+
+        /// <summary>
+        /// Use it to create an empty compressed array
+        /// </summary>
+        /// <param name="size">size of the uncompressed array</param>
+        public CompressedNodeArray(int size) {
+            _data = new List<Node>();
+            Length = size;
+            State = DataState.COMPRESSED;
+        }
+
+        /// <summary>
+        /// Use it to add obj's to empty compressed array
+        /// </summary>
+        /// <param name="obj">object to add</param>
+        public void Add(T obj) {
+            var data = GetCompressedData();
+
+            if (data.Count == 0) {
+                data.Add(new Node(1, obj));
+            } else {
+                var last = data.Last();
+                if (obj.Equals(last.Object)) data[data.Count - 1] = new Node(last.Count + 1, obj);
+                else data.Add(new Node(last.Count + 1, obj));
+            }
         }
 
         public void Compress() {
@@ -42,15 +82,11 @@ namespace CBSL.Core.Collections.Compressed {
         }
 
         public void SetAt(int index, T obj) {
-            switch (State) {
-                case DataState.COMPRESSED:
-                    throw new NotImplementedException("Set at for compressed data not implemented");
-                case DataState.DECOMPRESSED:
-                    GetDecompressedData()[index] = obj;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            GetDecompressedData()[index] = State switch {
+                DataState.COMPRESSED => throw new NotImplementedException("Set at for compressed data not implemented"),
+                DataState.DECOMPRESSED => obj,
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
 
         public T[] GetDecompressed() => InternalDecompress(GetCompressedData());
@@ -68,6 +104,8 @@ namespace CBSL.Core.Collections.Compressed {
 
             return (List<Node>) _data;
         }
+
+        #region Internal
 
         private List<Node> InternalCompress(T[] data) {
             var compressed = new List<Node>();
@@ -122,18 +160,7 @@ namespace CBSL.Core.Collections.Compressed {
             return data[min].Object;
         }
 
-        public readonly struct Node {
-
-            public int Count { get; }
-            public T Object { get; }
-
-            public Node(int count, T obj) {
-                Count = count;
-                Object = obj;
-            }
-
-        }
-
+        #endregion
     }
 
 }
