@@ -35,9 +35,12 @@ these implementation only differ by how they store compressed data, They all imp
 ---
 
 ## Implementations
-- ### [Byte List](byte_list)
+:::caution
+Byte Array is now marked obsolete due to performance concerns use [node array](node_array) instead
+:::
+- ### [Byte List](byte_array)
   This implementation stores the data as a plain list of bytes, ideal for serialization but has a byte conversion overhead
-- ### [Node List](node_list)
+- ### [Node List](node_array)
   This implementation stores the data as a list of Node (internal structure { Count, Object }), ideal for in-memory representation
 
 ---

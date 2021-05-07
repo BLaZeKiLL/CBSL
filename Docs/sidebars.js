@@ -13,8 +13,8 @@ module.exports = {
             {
               'Compressed Array': [
                 'modules/core/collections/compressed_array/introduction',
-                'modules/core/collections/compressed_array/byte_list',
-                'modules/core/collections/compressed_array/node_list',
+                'modules/core/collections/compressed_array/byte_array',
+                'modules/core/collections/compressed_array/node_array',
               ]
             },
             'modules/core/collections/object_pool'

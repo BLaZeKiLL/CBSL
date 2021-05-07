@@ -1,5 +1,5 @@
 ---
-title: Byte List
+title: Byte Array
 ---
 
 import Tabs from '@theme/Tabs';
@@ -14,6 +14,10 @@ import TabItem from '@theme/TabItem';
 <TabItem value="overview">
 
 ## Layout
+
+:::caution
+Byte Array is now marked obsolete due to performance concerns use [node array](node_array) instead
+:::
 
 ```javascript title="Uncompressed Array"
 [A,A,A,A,A,A,A,B,B,B,B,C,C,C,C,C,C,C,C,C,C,C]
