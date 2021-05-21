@@ -6,5 +6,5 @@
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://cbsl.netlify.app/blog"/>
     <subtitle>CBSL Blog</subtitle>
-    <icon>https://cbsl.netlify.app/img/favicon.ico</icon>
+    <icon>https://cbsl.netlify.app/img/favicon.svg</icon>
 </feed>
