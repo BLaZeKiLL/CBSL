@@ -7,7 +7,7 @@ module.exports = {
   projectName: 'cbsl',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.svg',
   themeConfig: {
     prism: {
       theme: require('./code_theme'),
@@ -17,7 +17,8 @@ module.exports = {
       title: 'CBSL',
       logo: {
         alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo_light.svg',
+        srcDark: 'img/logo_dark.svg'
       },
       items: [
         {
